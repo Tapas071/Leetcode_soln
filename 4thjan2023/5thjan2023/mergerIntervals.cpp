@@ -49,49 +49,38 @@ void showVector( vector<vector<int>> a)
 
 bool static cmp(vector<int> &a ,vector<int> &b)
 {
-    // return a[1]<=b[1];
-    if( a[0]<b[0])
-    {
-        return a[1]>=b[1];
-    }
-    else if( a[0]==b[0])
-    {
-        return a[1]>=b[1];
-    }
-    return a[0]<b[0];
+     return a[1]<b[1];
+    
 }
 vector<vector<int>> merge(vector<vector<int>>& intervals) {
         sort( intervals.begin(), intervals.end(), cmp);
         showVector(intervals);
         vector<vector<int>>ans;
         if( intervals.size()==1)return intervals;
+
         vector<int> temp;
         // int ct=0;
         int bg=0;
         temp.push_back(intervals[0][0]);
             
-            bg=intervals[1][1];
+            bg=intervals[0][1];
             // ct=1;
 
         for( int i =1; i< intervals.size(); i++)
         {
-            
-            if(intervals[i][0]>bg)
+            if( bg < intervals[i][0])
             {
-                // temp.push_back(intervals[i-1][1]);
-
-                if( bg < intervals[i][1])
-                {
-                    bg= intervals[i][1];
-                }
+                temp.push_back( bg);
                 ans.push_back(temp);
                 temp.clear();
                 temp.push_back(intervals[i][0]);
                 bg=intervals[i][1];
             }
+            else
+            {
+                bg = max( bg ,intervals[i][1]);
+            }
             
-
-
 
         }
         temp.push_back(intervals[intervals.size()-1][1]);

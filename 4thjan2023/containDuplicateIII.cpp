@@ -37,6 +37,7 @@ const int32_t    MM=998244353;
 
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int indexDiff, int valueDiff) {
         vector<pair< int,int>> a;
+        int n= a.size();
 
         for( int i=0; i< nums.size();i++)
         {
@@ -53,12 +54,25 @@ const int32_t    MM=998244353;
 
         // }
 
-        for( int i =1;i< a.size(); i++)
+        // for( int i =1;i< a.size(); i++)
+        // {
+        //     if( abs((a[i-1].first - a[i].first))<=valueDiff){
+        //         if( abs((a[i-1].second - a[i].second))<=indexDiff)return true;   
+        //     }
+        // }
+        int l=0, r=1;
+        while( l!=n-1 and r!=n)
         {
-            if( abs((a[i-1].first - a[i].first))<=valueDiff){
-                if( abs((a[i-1].second - a[i].second))<=indexDiff)return true;   
+            if(abs(a[l].first-a[r].first)<=valueDiff)
+            {
+                
+            }
+            else
+            {
+                l++;
             }
         }
+
         return false;
     }
 // };
